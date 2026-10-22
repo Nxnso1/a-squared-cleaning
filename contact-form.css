@@ -1,0 +1,12 @@
+.enquiry-fields { border: 0; padding: 0; margin: 0; min-width: 0; }
+.enquiry-fields:disabled input,
+.enquiry-fields:disabled select,
+.enquiry-fields:disabled textarea { background: #eef2f6; }
+.form-submit:disabled { opacity: .65; cursor: not-allowed; transform: none; }
+.enquiry-status { font-size: 12px; line-height: 1.7; margin: 14px 0; }
+.enquiry-status:empty { display: none; }
+.enquiry-status[data-state="error"] { color: #943c3c; }
+.enquiry-unavailable { padding: 13px 16px; background: #e8f0f9; border-radius: 14px; font-size: 12px; line-height: 1.7; }
+.direct-contact { margin: 20px 0 0; padding-top: 18px; border-top: 1px solid var(--line); font-size: 11px; text-align: center; overflow-wrap: anywhere; }
+.direct-contact a, .form-note a, #privacy-dialog a { text-decoration: underline; text-underline-offset: 3px; }
+.verification-button { margin: 12px 0; width: 100%; font-size: 12px; }

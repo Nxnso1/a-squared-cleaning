@@ -1,0 +1,125 @@
+/* The campaign image fills the opening section. Its motion follows native scrolling. */
+.hero.hero-motion {
+  --hero-progress: 0;
+  --hero-travel: 28px;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  max-width: 1600px;
+  min-height: 580px;
+  height: clamp(580px, calc(100svh - 142px), 760px);
+  max-height: 62vw;
+  overflow: hidden;
+}
+
+.hero-motion .hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.hero-motion .hero-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 12%;
+  transform-origin: 70% 50%;
+  transform: translate3d(0, calc(var(--hero-progress) * var(--hero-travel)), 0)
+    scale(calc(1.04 + var(--hero-progress) * .08));
+}
+
+.hero-motion .hero-image::after {
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(23, 49, 76, .94) 0%, rgba(23, 49, 76, .84) 24%, rgba(23, 49, 76, .54) 40%, rgba(23, 49, 76, .08) 61%, rgba(23, 49, 76, .02) 100%),
+    linear-gradient(0deg, rgba(23, 49, 76, .35), transparent 26%);
+}
+
+.hero-motion .hero-copy {
+  position: relative;
+  z-index: 2;
+  width: 56%;
+  min-height: 0;
+  padding: 64px 28px 70px max(48px, calc((100% - 1200px) / 2));
+}
+
+.hero-motion h1 {
+  font-size: clamp(50px, 5.05vw, 76px);
+  text-shadow: 0 2px 24px rgba(15, 35, 57, .12);
+}
+
+.hero-motion .hero-copy > p { color: #edf3f9; }
+.hero-motion .hero-footnote { color: #e6eff8; }
+.hero-motion .small-line { background: #b7d0e7; }
+
+.hero-scroll-cue {
+  position: absolute;
+  z-index: 2;
+  right: 38px;
+  bottom: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, .5);
+}
+.hero-scroll-cue .icon { width: 18px; height: 18px; transform: rotate(90deg); }
+
+@media (max-width: 1100px) {
+  .hero-motion .hero-copy { padding-left: 32px; padding-right: 20px; }
+  .hero-motion h1 { font-size: 54px; }
+  .hero-motion .hero-image > img { object-position: 64% 12%; }
+}
+
+/* Keep the full scene above the copy instead of cropping either model on small screens. */
+@media (max-width: 850px) {
+  .hero.hero-motion {
+    --hero-travel: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+  .hero-motion .hero-image {
+    position: relative;
+    inset: auto;
+    z-index: 0;
+    order: -1;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1344 / 752;
+  }
+  .hero-motion .hero-image > img { object-position: 50% 50%; }
+  .hero-motion .hero-image::after { background: linear-gradient(0deg, rgba(23, 49, 76, .14), transparent 32%); }
+  .hero-motion .hero-copy {
+    width: 100%;
+    min-height: 0;
+    padding: 39px 25px 37px;
+    background: var(--blue);
+  }
+  .hero-motion h1 { font-size: clamp(41px, 10.6vw, 62px); }
+  .hero-motion .hero-footnote { margin-top: 27px; }
+  .hero-scroll-cue { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-motion .hero-image > img { transform: none; will-change: auto !important; }
+}
+
+@media print {
+  .hero.hero-motion { display: block; height: auto; min-height: 0; max-height: none; background: white; }
+  .hero-motion .hero-copy { width: 100%; padding: 20px; background: white; }
+  .hero-motion .hero-copy > p { color: #333; }
+  .hero-motion .hero-image, .hero-scroll-cue { display: none; }
+}

@@ -1,0 +1,48 @@
+/* Content is visible by default; JavaScript opts eligible sections into motion. */
+[data-scroll-reveal] {
+  opacity: 1;
+  transform: none;
+  transition: opacity 650ms cubic-bezier(.2, .65, .25, 1),
+    transform 650ms cubic-bezier(.2, .65, .25, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-scroll-reveal].reveal-pending {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+}
+
+[data-scroll-reveal="left"].reveal-pending { transform: translate3d(-20px, 0, 0); }
+[data-scroll-reveal="right"].reveal-pending { transform: translate3d(20px, 0, 0); }
+
+[data-scroll-reveal].reveal-immediate,
+[data-scroll-reveal]:focus-within {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+@media (max-width: 640px) {
+  [data-scroll-reveal].reveal-pending { transform: translate3d(0, 16px, 0); }
+  [data-scroll-reveal].reveal-immediate,
+  [data-scroll-reveal]:focus-within { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-scroll-reveal],
+  [data-scroll-reveal].reveal-pending {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+@media print {
+  [data-scroll-reveal],
+  [data-scroll-reveal].reveal-pending {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
