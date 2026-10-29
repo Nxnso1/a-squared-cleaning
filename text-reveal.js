@@ -7,8 +7,7 @@
   const selectors = [
     'main h2', '.section-heading > p', '.service-description h3',
     '.service-description > p:not(.service-label)', '.steps h3', '.steps p',
-    '.about-copy > p:not(.eyebrow)', '.plan-copy > p:not(.eyebrow)',
-    '#cleaning-form h3'
+    '.about-copy > p:not(.eyebrow)', '.plan-copy > p:not(.eyebrow)'
   ];
   const records = new Map();
   const active = new Set();

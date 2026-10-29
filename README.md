@@ -1,65 +1,45 @@
-# A Squared Cleaning — Vercel export
+# A Squared Cleaning
 
-Complete plain HTML, CSS and JavaScript website. The original blue theme, images, icons and animations are included. No packages, build commands, API keys, environment variables, backend functions or ChatGPT dependencies are required.
+Plain HTML, CSS and JavaScript for the existing Vercel site. No build step, packages, environment variables or ChatGPT Sites dependencies are required.
 
-## Activate Formspree first
+## Live release — 29 October 2026
 
-**The form integration is prepared but is not live yet. Your unique Formspree endpoint is still needed.** The business email is **ASquaredCleaning@outlook.com**. No real test email has been sent, and inbox delivery has not been verified.
+Production: `https://www.asquaredcleaning.co.uk/`
 
-1. [Create the prepared A Squared Cleaning form](https://formspree.io/claim?name=A%20Squared%20Cleaning%20enquiries&project=a-squared-cleaning&field.name=text%2Crequired%2Cmaxlength%3A120&field.email=email%2Crequired%2Cmaxlength%3A254&field.phone=text%2Cmaxlength%3A40&field.space=text&field.frequency=text&field.size=text%2Cmaxlength%3A160&field.priorities=text%2Cmaxlength%3A1000&action.email=ASquaredCleaning%40outlook.com). Sign in or register with Formspree. The link supplies the existing fields and requests notifications to ASquaredCleaning@outlook.com. Complete any email verification and check that the form's notification recipient is this business address.
-2. Copy the form endpoint from Formspree. It starts with https://formspree.io/f/ and ends with your unique form ID. It is a public URL, not a password or API key.
-3. Open `form-config.js`, paste that complete URL between the empty quotes on the last line, and save. Deploy the updated files. Alternatively, send the endpoint back in this chat and I can finish the ZIP for you.
+Vercel deployment: `dpl_Eqatw5jH2y2BMwkQLND2BGVijkfj`, READY, with both the www and apex domains assigned. This initial release was uploaded directly through the Vercel API. The same runtime files are maintained in the main branch of `Nxnso1/a-squared-cleaning` for subsequent deployments.
 
-Until an endpoint is added, the submit button is disabled and customers are directed to the business email link. That link opens their own email app; it does not send automatically. The page never pretends an enquiry has been sent.
+## Quote enquiries
 
-Formspree controls the recipient in its dashboard. Changing the email displayed on the website alone does not change where Formspree sends notifications.
+The official BookingKoala lead form collects contact details, property type, cleaning frequency, postcode, cleaning priorities and preferred timing. It requests a quote; it does not create an appointment or take payment.
 
-## Deploy on Vercel
+- Form: `A Squared Cleaning - Quote enquiries`
+- Form ID: `8a30eb91-5b26-4ddf-ac12-29ff53bba421`
+- Business inbox, notification sender and Reply-To: `enquiries@asquaredcleaning.co.uk`
+- Sender name: `A Squared Cleaning`
+- The admin `Lead form submitted` notification is enabled. Customer email acknowledgements are not enabled; customers see an on-screen confirmation.
+- The site includes a direct form link and an email fallback.
+- Existing branding, images, animations and navigation are retained.
+- Formspree scripts are removed to avoid duplicate submissions. Keep the Formspree account and prior Vercel deployment available for rollback.
 
-**No special Vercel settings are needed.** `index.html` is at the ZIP root.
+## Verification — 29 October 2026
 
-For Vercel Drop, sign in at https://vercel.com/drop and upload the ZIP. If you have edited `form-config.js`, upload the complete updated folder, or create a new ZIP of its contents with `index.html` at the top level.
+Labelled tests submitted through the Vercel preview and the live `www.asquaredcleaning.co.uk` embedded form displayed the quote-only thank-you message. BookingKoala Email Logs reported both notifications as **Delivered** to `enquiries@asquaredcleaning.co.uk`, at 07:36 and 07:56 on 29 October 2026 respectively. This confirms the provider delivery status; it is not a claim that the email was opened. No booking, invoice or payment was created.
 
-For a Git import, put the files at the repository root. Use Framework Preset **Other**, leave Build Command empty and use the project root (`.`) as Output Directory. No Install Command or environment variables are needed.
+Microsoft shows the custom domain as Healthy and the new mailbox as the user's primary address. The website and form confirmation now use that address. Microsoft DKIM CNAME records are saved at Wix. Microsoft confirmed **Enabled** and **Signing DKIM signatures for this domain** at 07:54 on 29 October 2026.
 
-Official guides:
-- https://vercel.com/docs/drop
-- https://vercel.com/docs/builds/configure-a-build
+The desktop preview loaded all seven image elements without horizontal overflow. The official iframe resizer expanded the form from its 1500px fallback to 2059px. The form accepts submissions, but its thank-you state can retain the previous height and leave extra whitespace. Narrow/mobile visual testing remains outstanding.
 
-## What happens after activation
+## Ongoing setup
 
-Name and email are required. Phone, property size and cleaning priorities are optional. The form sends these details directly to Formspree over HTTPS POST. The customer's `email` field provides the standard Reply-To address.
+- The owner selected the **Growing** plan and is still on trial. BookingKoala documentation confirms Starter/Growing include one custom lead form and collection/viewing of its leads. The separate Leads trial exposes additional Premium features; do not rely on Premium-only funnels, multiple forms or logs without checking entitlement. Keep the live quote form as the retained form after the trial. No plan change or purchase was made by this integration. Sources: https://help.bookingkoala.com/help/leads-module-overview and https://www.bookingkoala.com/pricing/.
+- The production custom-domain embed and submission were verified. No domain whitelist is configured; the form works on both the Vercel preview and the custom domain.
+- The GitHub repository is `Nxnso1/a-squared-cleaning`, branch `main`. GitHub access was connected on 29 October 2026 to synchronize the live integration. Use this branch for future Vercel deployments.
+- The broader pre-launch website wording is preserved. Prices, cleaner availability and payment policies still need business decisions before instant booking can be enabled.
 
-The submit button prevents duplicate clicks while sending. Success appears only after Formspree confirms acceptance; it does not guarantee inbox delivery or confirm a booking. Errors preserve the entered details. If Formspree requests CAPTCHA verification, the visitor can continue through its hosted form flow. A honeypot field supports spam filtering.
+## Deployment
 
-Visitors can copy their receipt after a successful submission. The site does not store entries in localStorage or include them in URL query strings. Formspree stores accepted submissions in its dashboard and sends configured notifications. Its account limits still apply.
+Use the existing Vercel project `a-squared-cleaning` in team `as-quared-cleaning`. Keep its static-site configuration: entry point `index.html` at the repository root, no build command, no install command and no environment variables.
 
-The form requires JavaScript. Visitors without JavaScript can use the email link.
+The public domain remains `https://www.asquaredcleaning.co.uk/`; Wix manages DNS. Mailbox DNS changes must preserve the website A and CNAME records. Do not point the website domain to BookingKoala.
 
-## Check real delivery
-
-After adding the endpoint, submit a clearly labelled test enquiry from the Vercel site, using a real reply email. Confirm it appears in the Formspree dashboard and arrives at **ASquaredCleaning@outlook.com**; check Junk too. Reply to confirm the customer's address is used. If you enable Formspree domain restrictions, include your Vercel/custom domain.
-
-Local checks use simulated responses for success, server rejection and connection errors. Real email delivery cannot be verified until the endpoint and recipient are activated.
-
-## Remaining launch details
-
-The form requests a quote. It does not reserve an appointment, calculate a final price, confirm a booking or take payment.
-
-The existing broader “Preparing to launch” wording remains. The `<meta name="robots" content="noindex, nofollow">` tag remains too; remove it when the business is ready to appear in search results. The enquiry section and privacy note have been updated for Formspree.
-
-The previous host's viewer permissions do not transfer. Vercel controls access to the new deployment. Add an absolute `og:image` URL for `assets/a-squared-higgsfield-hero.webp` when your new domain is known if you want a predictable social sharing image.
-
-## Files
-
-- `form-config.js`: paste your Formspree endpoint here.
-- `index.html`: page content, contact fields and privacy note.
-- `enquiry.js`, `contact-form.css`: form submission and status messages.
-- `app.js`: tabs, navigation and privacy dialog.
-- Other CSS and JavaScript: existing theme and scrolling effects.
-- `assets/`: all photos, icons and favicons.
-- `source-artwork/`: original icon artwork retained for editing.
-
-No images have been regenerated. The archive excludes hosting manifests, repository history, preview tools and credentials. This export does not change the existing hosted website.
-
-Updated 22 October 2026.
+Baseline production before this release: `dpl_D2d8Qq39bwL76tNeD6ohhtArQuzS`, commit `5d749a635265c3d1c0f5c32ec4db4b5434e773f8`, using Formspree.
